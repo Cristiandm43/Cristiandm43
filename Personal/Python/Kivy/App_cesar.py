@@ -1,80 +1,63 @@
-#importamos las librerias necesarias
-import kivy 
-import random
+
+import kivy
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
+from kivy.uix.screenmanager import ScreenManager, Screen
 
-# Definimos la clase principal
-class CifradoCesarApp(App):
+class MyGrid(GridLayout):
+    def __init__(self, **kwargs):
+        super(MyGrid, self).__init__(**kwargs)
+        self.cols = 2
 
-    def build(self):
-        # Inicializamos la interfaz de usuario
-        self.layout = GridLayout(cols = 2)
+        self.add_widget(Label(text="Mensaje:"))
+        self.mensaje = TextInput(multiline=False)
+        self.add_widget(self.mensaje)
 
-        # Agregamos los elementos a la interfaz de usuario
-        self.label_1 = Label(text = "Ingresa la palabra a encriptar:")
-        self.input_1 = TextInput(multiline = False)
-        self.label_2 = Label(text = "Ingresa el desplazamiento para la encriptacion:")
-        self.input_2 = TextInput(multiline = False)
-        self.boton = Button(text = "Encriptar")
-        self.label_3 = Label(text = "")
+        self.add_widget(Label(text="Desplazamiento:"))
+        self.desplazamiento = TextInput(multiline=False)
+        self.add_widget(self.desplazamiento)
 
-        # Agregamos los elementos a la interfaz de usuario
-        self.layout.add_widget(self.label_1)
-        self.layout.add_widget(self.input_1)
-        self.layout.add_widget(self.label_2)
-        self.layout.add_widget(self.input_2)
-        self.layout.add_widget(self.boton)
-        self.layout.add_widget(self.label_3)
+        self.encriptar = Button(text="Encriptar")
+        self.encriptar.bind(on_press=self.encriptar_mensaje)
+        self.add_widget(self.encriptar)
 
-        # Definimos el evento de click en el boton
-        self.boton.bind(on_press = self.encriptar)
-        return self.layout
+        self.add_widget(Label(text="Mensaje encriptado:"))
+        self.mensaje_encriptado = TextInput(multiline=False)
+        self.add_widget(self.mensaje_encriptado)
 
-    # Definimos la funcion de encriptacion
-    def cifradoCesar(self, palabra):
-        # La palabra a encriptar se guarda en una lista de caracteres
-        caracteres = list(palabra)
-        # Obtenemos el desplazamiento para la encriptacion
-        desplazamiento = int(self.input_2.text)
+    def encriptar_mensaje(self, instance):
+        mensaje = self.mensaje.text
+        desplazamiento = int(self.desplazamiento.text)
+        mensaje_encriptado = ""
 
-        # Iteramos sobre cada caracter de la palabra
-        for i in range(len(caracteres)):
-            # Si el caracter es una letra
-            if caracteres[i].isalpha():
-                # Obtenemos el codigo ASCII del caracter
-                codigo = ord(caracteres[i])
-                # Si es una letra mayuscula
-                if codigo >= 65 and codigo <= 90:
-                    codigo += desplazamiento
-                    # Si el codigo ASCII supera el limite de letras mayusculas
-                    if codigo > 90:
-                        codigo -= 26
-                # Si es una letra minuscula
-                elif codigo >= 97 and codigo <= 122:
-                    codigo += desplazamiento
-                    # Si el codigo ASCII supera el limite de letras minusculas
-                    if codigo > 122:
-                        codigo -= 26
-                # Se actualiza el caracter de la palabra encriptada con el nuevo codigo ASCII
-                caracteres[i] = chr(codigo)
+        for caracter in mensaje:
+            if caracter.isalpha():
+                num = ord(caracter)
+                num += desplazamiento
+
+                if caracter.isupper():
+                    if num > ord('Z'):
+                        num -= 26
+                    elif num < ord('A'):
+                        num += 26
+                elif caracter.islower():
+                    if num > ord('z'):
+                        num -= 26
+                    elif num < ord('a'):
+                        num += 26
+
+                mensaje_encriptado += chr(num)
             else:
-                # Si el caracter es un espacio, no se realiza ninguna modificación
-                if caracteres[i] == ' ':
-                    pass
-                #Si el caracter se sale de los margenes del codigo ASCCI para alfabeto 
-                else:
-                    print('No es encriptable con estos caracteres')
+                mensaje_encriptado += caracter
 
-        # Devolvemos la palabra encriptada
-        return ''.join(caracteres)
+        self.mensaje_encriptado.text = mensaje_encriptado
 
-    # Definimos la funcion que se ejecuta al presionar el boton
-    def encriptar(self, objeto):
-        # Obtenemos la palabra a encriptar
-        palabra = self.input_1.text
-        # Mostramos la palabra encriptada
-        self.label_3.text = "Palabra encriptada: " + self.cifradoCesar(palabra)
+class MyApp(App):
+    def build(self):
+        return MyGrid()
+
+if __name__ == "__main__":
+    MyApp().run()
