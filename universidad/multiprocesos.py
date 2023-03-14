@@ -25,4 +25,4 @@ while True:
         break
     else:
         print('Opción no válida.')
-print('Fin del programa.')
+print('Fin del programa, Gracias')
