@@ -1,0 +1,23 @@
+import random
+
+# lista de vehículos disponibles y sus características
+vehiculos_disponibles = {"Auto": {"pisos": 5, "parqueaderos_por_piso": 10},
+                        "Camioneta": {"pisos": 3, "parqueaderos_por_piso": 6},
+                        "Moto": {"pisos": 2, "parqueaderos_por_piso": 8},
+                        "Bicicleta": {"pisos": 1, "parqueaderos_por_piso": 20}}
+
+# asignación aleatoria de un vehículo
+vehiculo_asignado = random.choice(list(vehiculos_disponibles.keys()))
+
+# número aleatorio de kilómetros para la entrega
+kilometros_entrega = random.randint(1, 50)
+
+# determinación de la ubicación de entrega
+piso_entrega = random.randint(1, vehiculos_disponibles[vehiculo_asignado]["pisos"])
+parqueadero_entrega = random.randint(1, vehiculos_disponibles[vehiculo_asignado]["parqueaderos_por_piso"])
+ubicacion_entrega = "Piso " + str(piso_entrega) + ", Parqueadero " + str(parqueadero_entrega)
+
+# impresión de la asignación de vehículo y ubicación de entrega
+print("Vehículo asignado:", vehiculo_asignado)
+print("Kilómetros de entrega:", kilometros_entrega)
+print("Ubicación de entrega:", ubicacion_entrega)
