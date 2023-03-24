@@ -13,5 +13,5 @@ print("tu presupuesto de marzo es:",presupuesto_marzo)
 #Se realiza la operacion de promedio de cada presupuesto 
 presupuesto_promedio = (presupuesto_enero + presupuesto_febrero + presupuesto_marzo)/3
 print (f"el presupuesto promedio para los 3 primero meses es de:, {presupuesto_promedio}")
-#revusion del tipo de variable resultado
+#revision del tipo de variable resultado
 print(type(presupuesto_promedio))
