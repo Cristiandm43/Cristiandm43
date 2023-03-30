@@ -5,4 +5,4 @@ try:
     print(number_1 + number_2)
     print("No se produjo un error")
 except:
-    print("Se ha produjo un error")
+    print("Se ha producido un error")
