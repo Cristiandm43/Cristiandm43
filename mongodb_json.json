@@ -1,0 +1,11 @@
+{
+    "nombre":"laptop",
+    "precio":100,
+    "activo":true,
+    "categorias":["computo","electronica"],
+    "DatosProveedor":{
+        "nombre":"Acer",
+        "ubicacion":"Mexixo",
+        "direccion":"Cerro de la silla"
+    }
+}
