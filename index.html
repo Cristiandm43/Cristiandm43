@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Empleo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Búsqueda de Empleo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="soporte.html">Soporte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">Acerca de Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Membresía</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Asesoría HV</a>
+                    </li>
+
+                    <!-- Formulario de Registro 
+                    <li class="nav-item" id="account-button">
+                        <a class="nav-link btn btn-primary" href="#" id="login-button">
+                            <span style="color: black;">Acceder a la cuenta</span>
+                        </a>
+                    </li>//
+                -->
+
+                <li class="nav-item" id="account-button">
+                    <a class="nav-link btn btn-primary" href="#" id="login-button">Acceder a la cuenta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" href="#" id="register-button">Registrarse</a>
+                </li>
+                    
+                    
+
+                </ul>
+
+
+
+            </div>
+
+            
+
+
+        </nav>
+
+<!-- Formulario de Inicio de Sesión -->
+<div id="login-form" style="display: none;">
+    <h2>Iniciar Sesión</h2>
+    <form>
+        <!-- Aquí coloca los campos del formulario de inicio de sesión -->
+        <input type="text" placeholder="Usuario" id="login-username">
+        <input type="password" placeholder="Contraseña" id="login-password">
+        <button type="button" id="login-submit">Iniciar Sesión</button>
+    </form>
+</div>
+
+<!-- Formulario de Registro -->
+<div id="register-form" style="display: none;">
+    <h2>Registro</h2>
+    <form>
+        <!-- Aquí coloca los campos del formulario de registro -->
+        <input type="text" placeholder="Nombre de usuario" id="register-username">
+        <input type="email" placeholder="Correo electrónico" id="register-email">
+        <input type="password" placeholder="Contraseña" id="register-password">
+        <button type="button" id="register-submit">Registrarse</button>
+    </form>
+</div>
+
+
+    </header>
+
+
+    
+    <main>
+        <div class="container">
+            <div class="row">
+                <!-- Columna de filtros -->
+                <div class="col-md-3">
+                    <div class="filter-box">
+                        <h2>Filtros</h2>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="salario" id="salario-todos" value="todos" checked>
+                            <label class="form-check-label" for="salario-todos">
+                                Todos
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="salario" id="salario-menos-de-1m" value="menos-de-1m">
+                            <label class="form-check-label" for="salario-menos-de-1m">
+                                Menos de 1 millón
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="salario" id="salario-1m-a-1.5m" value="1m-a-1.5m">
+                            <label class="form-check-label" for="salario-1m-a-1.5m">
+                                1 a 1.5 millones
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="salario" id="salario-1.5m-a-2.5m" value="1.5m-a-2.5m">
+                            <label class="form-check-label" for="salario-1.5m-a-2.5m">
+                                1.5 a 2.5 millones
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="salario" id="salario-mas-de-2.5m" value="mas-de-2.5m">
+                            <label class="form-check-label" for="salario-mas-de-2.5m">
+                                2.5 millones o más
+                            </label>
+                        </div>
+                        <div class="filter-section">
+                            <h4>Modalidad</h4>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="modalidad" id="modalidad-remoto" value="remoto">
+                                <label class="form-check-label" for="modalidad-remoto">
+                                    Remoto
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="modalidad" id="modalidad-presencial" value="presencial">
+                                <label class="form-check-label" for="modalidad-presencial">
+                                    Presencial
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="modalidad" id="modalidad-hibrido" value="hibrido">
+                                <label class="form-check-label" for="modalidad-hibrido">
+                                    Híbrido
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="modalidad" id="modalidad-todos" value="todos" checked>
+                                <label class="form-check-label" for="modalidad-todos">
+                                    Todos
+                                </label>
+                            </div>
+                        </div>                        
+                        <div class="filter-section">
+                            <h4>Ciudad</h4>
+                            <select class="form-control" id="ciudad">
+                                <option value="todas">Todas las ciudades</option>
+                                <option value="bogota">Bogotá</option>
+                                <option value="medellin">Medellín</option>
+                                <option value="cali">Cali</option>
+                                <option value="barranquilla">Barranquilla</option>
+                                <option value="cartagena">Cartagena</option>
+                                <option value="bucaramanga">Bucaramanga</option>
+                                <!-- Agregar mas ciudades -->
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <button id="aplicar-filtros-button" class="btn btn-primary" onclick="aplicarFiltros()">Aplicar Filtros</button>
+                </div>
+                <!-- Columna de listado de trabajos -->
+                <div class="col-md-9">
+                    <div class="col-md-3">
+                        <!-- Columna de ordenar por -->
+                        <div class="order-by">
+                            <h4>Ordenar por</h4>
+                            <select id="ordenar-por">
+                                <option value="relevancia">Relevancia</option>
+                                <option value="mas-reciente">Más Reciente</option>
+                            </select>
+                        </div>
+                    </div>
+                    <h2>Listado de Trabajos</h2>
+                    <ul class="list-group" id="listaElementos">
+                        <li class="list-group-item" data-modalidad="remoto" data-ciudad="bogota" data-salario="2000000">
+                            <h3><a href="detalle_empleo.html">Desarrollador Web</a></h3>
+                            <p>Descripción del empleo: Desarrollo y mantenimiento de sitios web.</p>
+                            <p>Empresa contratante: ABC Web Solutions</p>
+                            <p>Ubicación: Bogotá</p>
+                            <p>Fecha de publicación: 15 de septiembre de 2023</p>
+                            <div class="job-image">
+                                <img src="img/1.jpg" alt="Imagen de Desarrollo Web" width="150">
+                            </div>
+                            <div style="clear:both;"></div>
+                        </li>
+                        <li class="list-group-item" data-modalidad="presencial" data-ciudad="medellin" data-salario="1500000">
+                            <h3><a href="detalle_empleo.html">Diseñador Grafico</a></h3>
+                            <p>Descripción del empleo: Diseño de gráficos y materiales visuales.</p>
+                            <p>Empresa contratante: XYZ Design Studio</p>
+                            <p>Ubicación: Medellín</p>
+                            <p>Fecha de publicación: 14 de septiembre de 2023</p>
+                            <div class="job-image">
+                                <img src="img/2.jpg" alt="Imagen de Diseño Gráfico" width="150">
+                            </div>
+                            <div style="clear:both;"></div>
+                        </li>
+                        <li class="list-group-item" data-modalidad="hibrido" data-ciudad="cali" data-salario="1000000">
+                            <h3><a href="detalle_empleo.html">Gerente de Proyecto</a></h3>
+                            <p>Descripción del empleo: Gestión de proyectos y equipos de trabajo.</p>
+                            <p>Empresa contratante: GlobalCorp</p>
+                            <p>Ubicación: Cali</p>
+                            <p>Fecha de publicación: 12 de septiembre de 2023</p>
+                            <div class="job-image">
+                                <img src="img/3.jpg" alt="Imagen de Diseño Gráfico" width="150">
+                            </div>
+                            <div style="clear:both;"></div>
+                            <li class="list-group-item" data-modalidad="remoto" data-ciudad="medellin" data-salario="3000000">
+                                <h3><a href="detalle_empleo.html">Desarrollador de Apps</a></h3>
+                                <p>Descripción del empleo: Desarrollo de aplicaciones móviles.</p>
+                                <p>Empresa contratante: MobileTech</p>
+                                <p>Ubicación: Medellín</p>
+                                <p>Fecha de publicación: 10 de septiembre de 2023</p>
+                                <div class="job-image">
+                                    <img src="img/8.jpg" alt="Imagen de Desarrollo de Apps" width="150">
+                                </div>
+                                <div style="clear:both;"></div>
+                            </li>
+                            <li class="list-group-item" data-modalidad="remoto" data-ciudad="barranquilla" data-salario="1800000">
+                                <h3><a href="detalle_empleo.html">Analista de Datos</a></h3>
+                                <p>Descripción del empleo: Análisis de datos y generación de informes.</p>
+                                <p>Empresa contratante: DataInsights</p>
+                                <p>Ubicación: Barranquilla</p>
+                                <p>Fecha de publicación: 8 de septiembre de 2023</p>
+                                <div class="job-image">
+                                    <img src="img/9.jpg" alt="Imagen de Analista de Datos" width="150">
+                                </div>
+                                <div style="clear:both;"></div>
+                            </li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <section class="job-search">
+            <!-- Formulario de búsqueda de empleo -->
+        </section>
+        
+        <section class="job-listings">
+            <!-- Listado de trabajos (puedes usar una tabla, una lista, etc.) -->
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-box">
+                        &copy; 2023 Búsqueda de Empleo
+                        <br>
+                        <span class="owners">Propietarios: Miguel Parada, Cristian Machado y Daniel Martinez</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="control.js"></script>
+</body>
+</html>

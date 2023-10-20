@@ -1,0 +1,78 @@
+
+Si deseas que los elementos tengan la clase "list-group-item" en lugar de "elemento", puedes modificar el código HTML y CSS para que coincidan con esa clase. Aquí tienes el código HTML actualizado:
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Modalidad</title>
+    <style>
+        /* Estilos CSS para la lista de elementos */
+        .list-group {
+            list-style-type: none;
+            padding: 0;
+        }
+        .list-group-item {
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filtro de Modalidad de Trabajo</h1>
+    
+    <form id="filtroForm">
+        <label>
+            <input type="radio" name="modalidad" value="Remoto" checked> Remoto
+        </label>
+        <label>
+            <input type="radio" name="modalidad" value="Presencial"> Presencial
+        </label>
+        <label>
+            <input type="radio" name="modalidad" value="Híbrido"> Híbrido
+        </label>
+        <label>
+            <input type="radio" name="modalidad" value="Todos"> Todos
+        </label>
+    </form>
+    
+    <ul class="list-group" id="listaElementos">
+        <li class="list-group-item" data-modalidad="Remoto">Trabajo Remoto 1</li>
+        <li class="list-group-item" data-modalidad="Presencial">Trabajo Presencial 1</li>
+        <li class="list-group-item" data-modalidad="Híbrido">Trabajo Híbrido 1</li>
+        <li class="list-group-item" data-modalidad="Remoto">Trabajo Remoto 2</li>
+        <li class="list-group-item" data-modalidad="Presencial">Trabajo Presencial 2</li>
+        <li class="list-group-item" data-modalidad="Híbrido">Trabajo Híbrido 2</li>
+    </ul>
+
+    <script>
+        // Función para aplicar el filtro según la modalidad seleccionada
+        function filtrarModalidad() {
+            const modalidadSeleccionada = document.querySelector('input[name="modalidad"]:checked').value;
+            const listaElementos = document.getElementById("listaElementos");
+            const elementos = listaElementos.getElementsByClassName("list-group-item");
+
+            for (let i = 0; i < elementos.length; i++) {
+                const elemento = elementos[i];
+                const modalidadElemento = elemento.getAttribute("data-modalidad");
+
+                if (modalidadSeleccionada === "Todos" || modalidadElemento === modalidadSeleccionada) {
+                    elemento.style.display = "block";
+                } else {
+                    elemento.style.display = "none";
+                }
+            }
+        }
+
+        // Agregar un evento de escucha a los botones de radio para activar el filtro
+        const radioButtons = document.querySelectorAll('input[name="modalidad"]');
+        radioButtons.forEach((radioButton) => {
+            radioButton.addEventListener("change", filtrarModalidad);
+        });
+    </script>
+</body>
+</html>
